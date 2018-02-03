@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function computerPlay() {
+        let rndm = Math.floor(Math.random() * 3)
+        switch (rndm) {
+          case 0:
+            return "rock"
+            break;
+          case 1:
+            return "paper"
+            break;
+          case 2:
+            return "scissors"
+            break;
+        }
+      }
+      function playRound(playerSelection, computerSelection) {
+        if (playerSelection == computerSelection) {
+          return 0
+        }
+        else if (playerSelection == "rock" && computerSelection == "scissors" ||
+            playerSelection == "paper" && computerSelection == "rock" ||
+            playerSelection == "scissors" && computerSelection == "paper" ){
+          return 1;
+        }
+        else {
+          return 2;
+        }
+      }
+      function game() {
+        console.log("Best of five RockPaperScissord let's go!");
+        let round = 1
+        let playerPoints = 0
+        let computerPoints = 0
+
+        while (playerPoints < 3 && computerPoints < 3) {
+          console.log("Round " + round);
+          console.log("Player Points: " + playerPoints);
+          console.log("Computer Points: " + computerPoints);
+          let playersChoice = prompt("rock, paper or scissors?")
+          let computersChoice = computerPlay()
+          switch (playRound(playersChoice, computersChoice)) {
+            case 0:
+              console.log("Draw, next round");
+              round += 1;
+              break;
+            case 1:
+              console.log("you win this round");
+              playerPoints += 1;
+              round += 1;
+              break;
+            case 2:
+              console.log("you lose this round");
+              computerPoints += 1;
+              round += 1
+              break;
+          }
+        }
+        console.log("Game over!");
+        if (playerPoints == 3) {
+          console.log("You won!!!!!!!!!!!!");
+        } else {
+          console.log("You lose!");
+        }
+
+        }
+        game()
+    </script>
+  </body>
+</html>
